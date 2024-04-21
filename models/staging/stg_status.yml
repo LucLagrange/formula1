@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: stg_status
+    columns:
+      - name: id_status
+        description: "Status ID as string"
+        tests:
+          - not_null
+      - name: status
+        description: "Status"
+        tests:
+          - not_null

@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: stg_seasons
+    columns:
+      - name: wikipedia_url
+        description: "Wikipedia URL"
+        tests:
+          - not_null
+      - name: season_year
+        description: "Season year as string"
+        tests:
+          - not_null

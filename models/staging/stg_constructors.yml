@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_constructors
+    columns:
+      - name: constructor_reference
+        description: "Constructor reference"
+        tests:
+          - not_null
+      - name: constructor_name
+        description: "Constructor name"
+        tests:
+          - not_null
+      - name: nationality
+        description: "Nationality"
+        tests:
+          - not_null
+      - name: id_constructor
+        description: "Constructor ID as string"
+        tests:
+          - not_null
+          - unique

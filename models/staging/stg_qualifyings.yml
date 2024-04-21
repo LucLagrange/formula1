@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: stg_qualifyings
+    columns:
+      - name: id_qualifying
+        description: "Qualifying ID as string"
+        tests:
+          - not_null
+          - unique 
+      - name: id_race
+        description: "Race ID as string"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_races')
+              field: id_race
+      - name: id_driver
+        description: "Driver ID as string"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_drivers')
+              field: id_driver
+      - name: id_constructor
+        description: "Constructor ID as string"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_constructors')
+              field: id_constructor
+      - name: car_number
+        description: "Car number"
+        tests:
+          - not_null
+      - name: final_position
+        description: "Final position"
+        tests:
+          - not_null
+      - name: q1_best_time
+        description: "Q1 best time"
+      - name: q2_best_time
+        description: "Q2 best time"
+      - name: q3_best_time
+        description: "Q3 best time"

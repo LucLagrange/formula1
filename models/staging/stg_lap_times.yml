@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: stg_lap_times
+    columns:
+      - name: id_race
+        description: "Race ID as string"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_races')
+              field: id_race
+      - name: id_driver
+        description: "Driver ID as string"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_drivers')
+              field: id_driver
+      - name: lap
+        description: "Lap"
+        tests:
+          - not_null
+      - name: current_position
+        description: "Current position"
+        tests:
+          - not_null
+      - name: lap_time
+        description: "Lap time"
+        tests:
+          - not_null
+      - name: lap_time_milliseconds
+        description: "Lap time in milliseconds"
+        tests:
+          - not_null

@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: stg_drivers
+    columns:
+      - name: id_driver
+        description: "Driver ID as string"
+        tests:
+          - unique
+          - not_null
+      - name: driver_reference
+        description: "Driver reference"
+        tests:
+          - not_null
+      - name: car_number
+        description: "Car number"
+      - name: first_name
+        description: "First name"
+        tests:
+          - not_null
+      - name: last_name
+        description: "Last name"
+        tests:
+          - not_null
+      - name: nationality
+        description: "Nationality"
+        tests:
+          - not_null
+      - name: birth_date
+        description: "Birth date"
+        tests:
+          - not_null

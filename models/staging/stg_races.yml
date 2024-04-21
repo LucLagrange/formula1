@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: stg_races
+    columns:
+      - name: id_race
+        description: "Race ID as string"
+        tests:
+          - not_null
+          - unique
+      - name: season_year
+        description: "Season year as string"
+        tests:
+          - relationships:
+              to: ref('stg_seasons')
+              field: season_year
+          - not_null
+      - name: season_round
+        description: "Season round as string"
+        tests:
+          - not_null
+      - name: id_circuit
+        description: "Circuit ID as string"
+      - name: race_name
+        description: "Race name"
+      - name: race_date
+        description: "Race date"
+      - name: qualifying_date
+        description: "Qualifying date"
+      - name: sprint_date
+        description: "Sprint date"
+      - name: fp1_date
+        description: "FP1 date"
+      - name: fp2_date
+        description: "FP2 date"
+      - name: fp3_date
+        description: "FP3 date"

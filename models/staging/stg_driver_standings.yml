@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: stg_driver_standings
+    columns:
+      - name: id_driver_standing
+        description: "Driver Standings ID as string"
+        tests:
+          - not_null
+          - unique
+      - name: id_race
+        description: "Race ID as string"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_races')
+              field: id_race
+      - name: id_driver
+        description: "Driver ID as string"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_drivers')
+              field: id_driver
+      - name: points_gained
+        description: "Points gained"
+        tests:
+          - not_null
+      - name: end_position
+        description: "End position"
+        tests:
+          - not_null
+      - name: wins_number
+        description: "Number of wins"
+        tests:
+          - not_null

@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: staging_pit_stops
+    columns:
+      - name: pit_stop_number
+        description: "Pit stop number"
+        tests:
+          - not_null
+      - name: lap_of_pit_stop
+        description: "Lap of the pit stop"
+        tests:
+          - not_null
+      - name: time_at_pit_stop
+        description: "Time at the pit stop"
+        tests:
+          - not_null
+      - name: pit_stop_duration
+        description: "Pit stop duration"
+        tests:
+          - not_null
+      - name: pit_stop_duration_milliseconds
+        description: "Pit stop duration in milliseconds"
+        tests:
+          - not_null
+      - name: id_race
+        description: "Race ID as string"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_races')
+              field: id_race
+      - name: id_driver
+        description: "Driver ID as string"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_drivers')
+              field: id_driver
