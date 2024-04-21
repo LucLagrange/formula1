@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: stg_circuits
+    columns:
+      - name: id_circuit
+        description: "Circuit ID as string"
+        tests:
+          - unique
+          - not_null
+      - name: circuit_reference
+        description: "Circuit reference"
+        tests:
+          - not_null
+      - name: circuit_name
+        description: "Circuit name"
+        tests:
+          - not_null
+      - name: circuit_location
+        description: "Circuit location"
+        tests:
+          - not_null
+      - name: circuit_country
+        description: "Circuit country"
+        tests:
+          - not_null
+      - name: lattitude
+        description: "Latitude"
+        tests:
+          - not_null
+      - name: longitude
+        description: "Longitude"
+        tests:
+          - not_null
+      - name: altitude
+        description: "Altitude"
+
+
