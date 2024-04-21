@@ -1,0 +1,47 @@
+version: 2
+
+sources:
+  - name: sources
+    database: formula1-421009
+    description: "This is a replica -minus some useless columns- of the source CSV files"
+    tables:
+      - name: circuits
+        description: "Contains information about the different circuits used"
+      - name: constructor_results
+        description: "Describes the result obtained by each constructor at each race"
+
+      - name: constructor_standings
+        description: "Describes the standings for each constructos at each race"
+
+      - name: constructors
+        description: "Contains information about each constructor"
+
+      - name: driver_standings
+        description: "Describe the standings for each driver at each race"
+
+      - name: drivers
+        description: "Contains information about each driver"
+
+      - name: lap_times
+        description: "Contains information about each lap time at each race"
+
+      - name: races
+        description: "Contains information about each race"
+
+      - name: results
+        description: "Describes results at each race"
+
+      - name: seasons
+        description: "Contains information about each season"
+
+      - name: sprint_results
+        description: "Describes results for each sprint race"
+
+      - name: status
+        description: "Contains information about each status (reasons why a drive did not finish its race)"
+
+      - name: pit_stops
+        description: "Contains information about each pit stop for each race"
+
+      - name: qualifying
+        description: "Contains information about each qualifying session"
