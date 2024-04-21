@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: stg_results
+    columns:
+      - name: id_result
+        description: "Result ID as string"
+        tests:
+          - unique
+          - not_null
+      - name: id_race
+        description: "Race ID as string"
+        tests:
+          - not_null
+          # - relationships:
+              # to: ref('stg_races')
+              # field: id_race
+      - name: id_driver
+        description: "Driver ID as string"
+        tests:
+          - not_null
+          # - relationships:
+             # to: ref('stg_drivers')
+            # field: id_driver
+      - name: id_constructor
+        description: "Constructor ID as string"
+        tests:
+          - not_null
+          # - relationships:
+            #  to: ref('stg_constructors')
+            #  field: id_constructor
+      - name: car_number
+        description: "Car number"
+        tests:
+          - not_null
+      - name: start_position
+        description: "Start position"
+      - name: end_position
+        description: "End position"
+      - name: final_rank
+        description: "Final rank"
+      - name: points_gained
+        description: "Points gained"
+      - name: laps_driven
+        description: "Laps driven"
+      - name: fastest_lap
+        description: "Fastest lap"
+      - name: fastest_lap_rank
+        description: "Fastest lap rank"
+      - name: fastest_lap_speed
+        description: "Fastest lap speed"
+      - name: total_milliseconds_elapsed
+        description: "Total milliseconds elapsed"
+      - name: id_status
+        description: "Status ID as string"
+        tests:
+          - not_null

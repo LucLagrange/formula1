@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: stg_constructor_standings
+    columns:
+      - name: id_constructor_standings
+        description: "Constructor Standings ID as string"
+        tests:
+          - unique
+          - not_null
+      - name: id_race
+        description: "Race ID as string"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_races')
+              field: id_race
+      - name: id_constructor
+        description: "Constructor ID as string"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_constructors')
+              field: id_constructor
+      - name: points_gained
+        description: "Points gained"
+        tests:
+          - not_null
+      - name: end_position
+        description: "End position"
+        tests:
+          - not_null
+      - name: wins_number
+        description: "Number of wins"
+        tests:
+          - not_null

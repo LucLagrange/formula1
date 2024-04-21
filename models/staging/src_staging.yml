@@ -43,5 +43,5 @@ sources:
       - name: pit_stops
         description: "Contains information about each pit stop for each race"
 
-      - name: qualifying
+      - name: qualifyings
         description: "Contains information about each qualifying session"

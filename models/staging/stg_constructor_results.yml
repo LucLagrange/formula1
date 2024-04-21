@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: stg_constructor_results
+    columns:
+      - name: points_gained
+        description: "Points gained"
+        tests:
+          - not_null
+      - name: id_constructor_result
+        description: "Constructor Results ID as string"
+        tests:
+          - unique
+          - not_null
+      - name: id_constructor
+        description: "Constructor ID as string"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_constructors')
+              field: id_constructor
+      - name: id_race
+        description: "Race ID as string"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_races')
+              field: id_race
+      - name: bl_disqualified
+        description: "Boolean flag for disqualification"
+        tests:
+          - not_null
