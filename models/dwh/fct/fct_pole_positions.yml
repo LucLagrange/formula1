@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: fct_pole_positions
+    columns:
+      - name: id_race
+        description: "The id of the race"
+        tests:
+          - unique
+          - not_null
+      - name: id_driver
+        description: "The id of the driver"
+        tests:
+          - not_null
+      - name: id_constructor
+        description: "The id of the constructor"
+        tests:
+          - not_null
+      - name: id_circuit
+        description: "The id of the circuit"
+        tests:
+          - not_null
+      - name: race_date
+        description: "The date the race was held"
+      - name: full_name
+        description: "The full name of the driver"
+      - name: circuit_name
+        description: "The name of the circuit"
+      - name: season_year
+        description: "The year of the racing season"
+      - name: season_round
+        description: "The session round related to the pole position"
