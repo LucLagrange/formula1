@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: dim_drivers
+    description: This model contains detailed information about Formula 1 drivers, including their debut and last racing years, the teams they have joined, the number of seasons they have raced, their nationality, birth date, and various performance metrics such as wins, podiums, total points, grand prix finishes, and pole positions.
+    columns:
+      - name: id_driver
+        description: The unique identifier of the driver.
+        data_tests:
+          - not_null
+          - unique
+      - name: nationality
+        description: The nationality of the driver.
+      - name: birth_date
+        description: The birth date of the driver.
+      - name: debut_year
+        description: The year the driver made their debut in Formula 1.
+      - name: last_year
+        description: The last year the driver participated in Formula 1.
+      - name: list_teams_joined
+        description: A list of teams the driver has joined during their career.
+      - name: nb_seasons_raced
+        description: The number of seasons the driver has raced in Formula 1.
+      - name: driver_name
+        description: The full name of the driver.
+      - name: nb_win
+        description: The number of races the driver has won.
+      - name: nb_podium
+        description: The number of podium finishes the driver has achieved.
+      - name: total_points
+        description: The total number of points the driver has accumulated.
+      - name: gp_finish
+        description: The number of grand prix finishes the driver has completed.
+      - name: pole_position
+        description: The number of pole positions the driver has achieved.
