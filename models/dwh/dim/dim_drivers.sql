@@ -55,11 +55,9 @@ gp_finish AS (
 pole_position AS (
     SELECT
         id_driver,
-        COUNT(*) AS pole_position
+        COUNT(id_race) AS pole_position
     FROM
-        {{ ref('stg_qualifyings') }}
-    WHERE
-        final_position = 1
+        {{ ref('fct_pole_positions') }}
     GROUP BY
         id_driver
 ),
