@@ -2,8 +2,8 @@ WITH
 year AS (
     SELECT DISTINCT
         drivers.id_driver,
-        CAST(MIN(season_year) AS INT) AS debut_year,
-        CAST(MAX(season_year) AS INT) AS last_year
+        CAST(MIN(races.season_year) AS INT) AS debut_year,
+        CAST(MAX(races.season_year) AS INT) AS last_year
     FROM
         {{ ref('stg_drivers') }} AS drivers
     INNER JOIN
@@ -55,12 +55,10 @@ gp_finish AS (
 pole_position AS (
     SELECT
         id_driver,
-        COUNT(*) AS pole_position
+        COUNT(id_race) AS pole_position
     FROM
-        {{ ref('stg_qualifyings') }}
-    WHERE
-        final_position = 1
-    GROUP BY 
+        {{ ref('fct_pole_positions') }}
+    GROUP BY
         id_driver
 ),
 
@@ -72,45 +70,64 @@ total_points AS (
         {{ ref('stg_results') }}
     GROUP BY
         id_driver
+),
+
+teams AS (
+    SELECT
+        results.id_driver,
+        ARRAY_AGG(DISTINCT constructors.constructor_name IGNORE NULLS)
+            AS teams_joigned
+    FROM
+        {{ ref('stg_results') }} AS results
+    LEFT JOIN
+        {{ ref('stg_constructors' ) }} AS constructors
+        ON results.id_constructor = constructors.id_constructor
+    GROUP BY
+        results.id_driver
 )
 
 
 SELECT
-    d.id_driver,
-    d.nationality,
-    d.birth_date,
-    dy.debut_year,
-    dy.last_year,
-    COALESCE(dy.last_year - dy.debut_year, 0) AS nb_seasons_raced,
-    CONCAT(d.first_name, ' ', d.last_name) AS driver_name,
-    COALESCE(w.wins, 0) AS win,
-    COALESCE(p.podiums, 0) AS podium,
-    COALESCE(pg.total_points, 0) AS total_points,
-    COALESCE(gp.gp_finish, 0) AS gp_finish,
-    COALESCE(pp.pole_position, 0) AS pole_position
+    drivers.id_driver,
+    drivers.nationality,
+    drivers.birth_date,
+    years.debut_year,
+    years.last_year,
+    teams_joined.teams_joigned AS list_teams_joined,
+    COALESCE(years.last_year - years.debut_year, 0) AS nb_seasons_raced,
+    CONCAT(drivers.first_name, ' ', drivers.last_name) AS driver_name,
+    COALESCE(wins.wins, 0) AS nb_win,
+    COALESCE(podiums.podiums, 0) AS nb_podium,
+    COALESCE(points.total_points, 0) AS total_points,
+    COALESCE(finishes.gp_finish, 0) AS gp_finish,
+    COALESCE(poles.pole_position, 0) AS pole_position
 FROM
-    {{ ref('stg_drivers') }} AS d
+    {{ ref('stg_drivers') }} AS drivers
 LEFT JOIN
-    year AS dy
+    year AS years
     ON
-        d.id_driver = dy.id_driver
+        drivers.id_driver = years.id_driver
 LEFT JOIN
-    wins AS w
+    wins AS wins
     ON
-        d.id_driver = w.id_driver
+        drivers.id_driver = wins.id_driver
 LEFT JOIN
-    podiums AS p
+    podiums AS podiums
     ON
-        d.id_driver = p.id_driver
+        drivers.id_driver = podiums.id_driver
 LEFT JOIN
-    gp_finish AS gp
+    gp_finish AS finishes
     ON
-        d.id_driver = gp.id_driver
+        drivers.id_driver = finishes.id_driver
 LEFT JOIN
-    pole_position AS pp
+    pole_position AS poles
     ON
-        d.id_driver = pp.id_driver
+        drivers.id_driver = poles.id_driver
 LEFT JOIN
-    total_points AS pg
+    total_points AS points
     ON
-        d.id_driver = pg.id_driver
+        drivers.id_driver = points.id_driver
+LEFT JOIN
+    teams AS teams_joined
+    ON
+        drivers.id_driver = teams_joined.id_driver

@@ -20,7 +20,7 @@ WITH pole_position AS (
         ON
             results.id_driver = drivers.id_driver
     LEFT JOIN
-        {{ref('stg_circuits')}} AS circuits
+        {{ ref('stg_circuits') }} AS circuits
         ON
             races.id_circuit = circuits.id_circuit
     WHERE
